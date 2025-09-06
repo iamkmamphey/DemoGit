@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Kingdom Access System — RBAC & Faith</title>
+  <meta name="description" content="A colorful, interactive explanation of RBAC (Role-Based Access Control) as a metaphor for God's Kingdom — by Kwaku Mamphey.">
+  <style>
+    :root{
+      --bg:#0f1226; --card:#15193a; --text:#e9e9ff; --muted:#b9b9d6;
+      --brand1:#7c5cff; --brand2:#20e3b2; --brand3:#ff7eb3;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(1000px 600px at 110% 10%, rgba(32,227,178,.2), transparent 60%),
+        linear-gradient(180deg, #0b0d1f, var(--bg) 40%);
+      -webkit-font-smoothing:antialiased; overflow-y:auto; scroll-behavior:smooth;
+    }
+    a{color:var(--brand2); text-decoration:none}
+    .nav{
+      position:sticky; top:0; z-index:60; backdrop-filter:saturate(160%) blur(10px);
+      background:linear-gradient(90deg, rgba(15,18,38,.75), rgba(21,25,58,.75));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner{max-width:1200px;margin:0 auto;padding:.6rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+    .brand{display:flex;align-items:center;gap:.6rem;font-weight:700}
+    .logo{width:30px;height:30px;border-radius:8px;background:conic-gradient(from 210deg,var(--brand1),var(--brand2),var(--brand3))}
+    .cta{display:flex;gap:.6rem;align-items:center}
+    .btn{
+      display:inline-flex;align-items:center;gap:.5rem;padding:.6rem .9rem;border-radius:12px;border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      color:var(--text);font-weight:700;font-size:.95rem;cursor:pointer;
+    }
+    .btn.primary{background:linear-gradient(90deg,var(--brand1),var(--brand3));border-color:transparent}
+    .hero{max-width:1200px;margin:1.6rem auto;padding:1.6rem 1rem;display:grid;grid-template-columns:1.2fr .8fr;gap:1.25rem;align-items:center}
+    @media (max-width:920px){.hero{grid-template-columns:1fr;padding:1rem}}
+    .title{font-size:clamp(1.8rem,3.8vw,3.2rem);line-height:1.02;margin:0;background:linear-gradient(90deg,#fff,#cbd5ff 40%,#b3ffe6);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .subtitle{color:var(--muted);max-width:60ch;margin-top:.6rem}
+    .pill{display:inline-block;margin-top:.8rem;padding:.36rem .6rem;border-radius:999px;font-weight:800;background:linear-gradient(90deg,var(--brand1),var(--brand2));color:#0b0d1f}
+    .quote{background:linear-gradient(135deg, rgba(124,92,255,.12), rgba(32,227,178,.08));padding:1rem;border-radius:12px;border:1px solid rgba(255,255,255,.06)}
+    .dash{max-width:1200px;margin:1rem auto;padding:0 1rem 2rem}
+    .cards{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem}
+    .card{grid-column:span 6;background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.06);padding:1rem;border-radius:14px;min-height:160px;position:relative;overflow:hidden}
+    @media (max-width:920px){.card{grid-column:span 12}}
+    .badge{position:absolute;top:12px;right:12px;padding:.35rem .6rem;border-radius:999px;font-size:.75rem;font-weight:800;background:linear-gradient(90deg,var(--brand2),var(--brand3));color:#081018}
+    .role{display:flex;gap:.8rem}
+    .icon{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;font-weight:900;background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.06)}
+    .card h3{margin:.1rem 0 .5rem}
+    .scripture{margin-top:.6rem;padding:.6rem .8rem;border-radius:10px;background:rgba(255,255,255,.025);border:1px dashed rgba(255,255,255,.06);color:var(--muted)}
+    details{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.06);padding:.8rem;border-radius:12px}
+    summary{cursor:pointer;font-weight:800;outline:none}
+    .quote-large{max-width:900px;margin:1.2rem auto;padding:1rem;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg, rgba(124,92,255,.12), rgba(32,227,178,.08))}
+    .footer{max-width:1200px;margin:1.5rem auto 3rem;padding:0 1rem;text-align:center;color:var(--muted)}
+    .toast{position:fixed;right:16px;bottom:16px;background:#081018;color:#e9fdf6;padding:.7rem 1rem;border-radius:10px;border:1px solid rgba(255,255,255,.08);box-shadow:0 8px 24px rgba(0,0,0,.35);opacity:0;transform:translateY(8px);transition:.25s}
+    .toast.show{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <div class="brand"><div class="logo" aria-hidden="true"></div><span>The Kingdom Access System</span></div>
+      <div class="cta" role="group" aria-label="Actions">
+        <button class="btn" onclick="document.getElementById('roles').scrollIntoView()">Explore Roles</button>
+        <button class="btn" onclick="document.getElementById('story').scrollIntoView()">Read Story</button>
+        <button class="btn" id="shareBtn">Share</button>
+        <button class="btn" id="printBtn">Print</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero" role="banner">
+      <div>
+        <h1 class="title">“The Kingdom Access System”</h1>
+        <p class="subtitle">
+          Hi, my name is <strong>Kwaku Mamphey</strong>… I want to explain a concept I think cybersecurity and DevOps professionals who love Christ will appreciate—yet anyone can learn from it.
+          We’ll explore <strong>RBAC — Role-Based Access Control</strong> as a picture of <strong>God</strong>, <strong>Jesus</strong>, <strong>the Holy Spirit</strong>, and <strong>humanity</strong>.
+        </p>
+        <div style="margin-top:.7rem">
+          <button class="btn primary" onclick="document.getElementById('roles').scrollIntoView()">Start the Tour</button>
+          <button class="btn" onclick="document.getElementById('story').scrollIntoView()">Why it matters</button>
+          <span class="pill" style="margin-left:.6rem">Faith × Cybersecurity × DevOps</span>
+        </div>
+      </div>
+      <aside>
+        <div class="quote">
+          <strong>Imagine for a moment…</strong><br>
+          Life is not random. It is a secure system, a divine network, with roles and permissions.
+          Not everyone has the same access. Not everyone can change the code or rewrite the story.
+        </div>
+      </aside>
+    </header>
+
+    <section id="roles" class="dash" aria-labelledby="roles-heading">
+      <h2 id="roles-heading" style="font-size:1.6rem;margin:.4rem 0 1rem">RBAC Roles in the Kingdom</h2>
+      <p style="color:var(--muted);margin:0 0 1rem">Tap a card to read scriptures and highlights.</p>
+
+      <div class="cards" role="list">
+        <article class="card" role="listitem" tabindex="0" aria-labelledby="god-title">
+          <span class="badge">Owner</span>
+          <div class="role">
+            <div class="icon" aria-hidden="true">G</div>
+            <div>
+              <h3 id="god-title">God the Father</h3>
+              <p>At the top is God—the Owner of the entire system. He holds the master key. Every server, every database, every hidden file of your life belongs to Him.</p>
+              <div class="scripture">
+                “The earth is the LORD’s, and the fullness thereof; the world, and they that dwell therein.” (Psalm 24:1)<br>
+                He declares the end from the beginning. No hacker, enemy, or circumstance can override His ownership.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem" tabindex="0" aria-labelledby="jesus-title">
+          <span class="badge">Administrator</span>
+          <div class="role">
+            <div class="icon" aria-hidden="true">J</div>
+            <div>
+              <h3 id="jesus-title">Jesus the Administrator / Contributor</h3>
+              <p>When Adam’s sin corrupted humanity’s code and the system crashed, Jesus came to debug our lives and restore access.</p>
+              <div class="scripture">
+                “All authority in heaven and on earth has been given to me.” (Matthew 28:18)<br>
+                He resets passwords, forgives sins, and grants access where it was denied—logging into your broken situation to turn it around.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem" tabindex="0" aria-labelledby="hs-title">
+          <span class="badge">Defined Role</span>
+          <div class="role">
+            <div class="icon" aria-hidden="true">H</div>
+            <div>
+              <h3 id="hs-title">The Holy Spirit</h3>
+              <p>Every great system has background processes—protecting, guiding, and monitoring. That is the Holy Spirit.</p>
+              <div class="scripture">
+                “When the Spirit of truth comes, he will guide you into all the truth.” (John 16:13)<br>
+                He encrypts our prayers, monitors our heart-traffic, blocks malicious attacks, and ensures secure communication with heaven.
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" role="listitem" tabindex="0" aria-labelledby="humanity-title">
+          <span class="badge">Reader</span>
+          <div class="role">
+            <div class="icon" aria-hidden="true">U</div>
+            <div>
+              <h3 id="humanity-title">Humanity — The Reader</h3>
+              <p>We can see, experience, and testify—but we cannot alter the backend. We depend on the Owner, the Admin, and the Spirit.</p>
+              <div class="scripture">
+                “Apart from me, you can do nothing.” (John 15:5)<br>
+                “A person cannot receive even one thing unless it is given him from heaven.” (John 3:27)
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="story" class="dash" aria-labelledby="story-heading" style="max-width:1000px;margin:1rem auto 2rem;padding:0 1rem;">
+      <h2 id="story-heading" style="font-size:1.6rem;margin-bottom:.6rem">In conclusion — the truth that sets us at rest</h2>
+
+      <details open>
+        <summary>Core message</summary>
+        <div style="height:8px"></div>
+        <p>Your life is not out of control—it is under divine control. You may be a Reader, but you serve a God who is the Owner.
+          You walk with Jesus, the Admin who can change any situation. You are guided by the Spirit, the divine protocol who never fails.</p>
+        <p>Stop stressing about what you cannot edit. Stop worrying about what you cannot override.
+          Trust the One who owns the system, and rest in His access control.</p>
+      </details>
+
+      <details>
+        <summary>A workplace parable — waiting on the Administrator</summary>
+        <div style="height:8px"></div>
+        <p>When your system is acting up at work, what do you do? You call the administrator and wait till they are done;
+          you virtually do nothing but wait. What is the difference when it comes to the life you didn’t create?</p>
+      </details>
+
+      <details>
+        <summary>Final Quote</summary>
+        <div style="height:8px"></div>
+        <div class="quote-large">“We are not system owners; we are readers of God’s script. Our greatest security is knowing the Owner of life holds the master key.”</div>
+        <p style="color:var(--muted);margin-top:.6rem">— Shared by <strong>Kwaku Mamphey</strong></p>
+      </details>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+      <p>Thank you for taking the time. I hope it was worth your while. — <strong>Kwaku Mamphey</strong></p>
+      <p style="font-size:.95rem;color:var(--muted)">Tip: Use the Share button to copy the page URL or Print to save as PDF.</p>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Link copied to clipboard!</div>
+
+  <script>
+    // Share and Print handlers
+    const shareBtn = document.getElementById('shareBtn');
+    const printBtn = document.getElementById('printBtn');
+    const toast = document.getElementById('toast');
+
+    shareBtn.addEventListener('click', async () => {
+      const url = window.location.href;
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: document.title, text: 'Check this: The Kingdom Access System', url });
+        } else {
+          await navigator.clipboard.writeText(url);
+          showToast('Link copied to clipboard!');
+        }
+      } catch(e) {
+        await navigator.clipboard.writeText(url);
+        showToast('Link copied to clipboard!');
+      }
+    });
+
+    printBtn.addEventListener('click', () => window.print());
+
+    function showToast(text = 'Done') {
+      toast.textContent = text;
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 1600);
+    }
+
+    // Simple intersection reveal animation
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.animate([{opacity:0, transform:'translateY(8px)'},{opacity:1, transform:'translateY(0)'}],
+            {duration:420, easing:'cubic-bezier(.2,.8,.25,1)', fill:'both'});
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.15});
+
+    document.querySelectorAll('.card, details, .quote-large').forEach(el => observer.observe(el));
+
+    // Accessibility: open/close details with Enter/Space on focused summary
+    document.querySelectorAll('summary').forEach(s => {
+      s.setAttribute('tabindex', '0');
+      s.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); s.click(); }
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
