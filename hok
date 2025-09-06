@@ -1,0 +1,17 @@
+<div>
+              <h4 className="text-sm uppercase tracking-wider mb-4">Information</h4>
+              <ul className="space-y-3 font-light">
+                <li><a href="#" className="hover:opacity-70 transition-opacity">About Us</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">Sustainability</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">Production</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">Stockists</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-sm uppercase tracking-wider mb-4">Legal</h4>
+              <ul className="space-y-3 font-light">
+                <li><a href="#" className="hover:opacity-70 transition-opacity">Terms of Service</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">Privacy Policy</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">Shipping & Returns</a></li>
+              </ul>
